@@ -1,0 +1,4 @@
+Questão 5:
+    Questão Bônus – Dada uma árvore binária com mais de 3 nós, é possível que um percurso em pré-ordem e um percurso em-ordem visitem os nós na mesma ordem? Se não, justifique. Se sim, dê um exemplo.
+Resposta:
+    É possível que exista uma árvore que printe o percurso pré-ordem e o percurso em-ordem caso tenhamos uma árvore degenerada, ou seja o caso de uma árvore binária de busca com nós inseridos de forma ordenada, dessa maneira teremos uma lista ligada, assim quando tentarmos printar os percursos esperando resultados diferentes teremos resultados iguais, pois teremos apenas nós direitos na árvore.

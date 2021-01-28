@@ -1,0 +1,9 @@
+Questão 3:
+    Dada a árvore AVL abaixo, pede-se:
+
+A) (2.0 pontos) faça as inserções, pela ordem, das seguintes chaves: 70, 80, 42, 43, 44 e 14.
+
+B) (1 ponto) a partir da árvore final gerada em A), faça, pela ordem, a remoção do nós com chaves 25 e 41.
+
+Para A) e B), em cada caso mostre, passo-a-passo: a inserção/remoção realizada, alterações de valores (se houver), a árvore gerada, a(s) rotação(ões) realizada(s) (quando houver) e os fatores de balanceamento dos nós envolvidos em rotações.
+

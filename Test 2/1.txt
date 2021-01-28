@@ -1,0 +1,51 @@
+Questão 1:
+    Escreva uma função, em C, recursiva ou não, que determina se uma árvore binária é perfeitamente balanceada.  A função deve possui o seguinte protótipo: int determina (NO *T);. T é um ponteiro para uma estrutura do tipo:
+
+    typedef struct no{
+        no *esq;
+        no *dir;
+        int valor;
+    }NO;
+
+Resposta:
+    Se utilizando da estrutura árvore binária de busca e um typedef para uma struct árvore que contem o nó raiz de uma árvore temos
+
+    #define bool int
+    #define TRUE 1
+    #define FALSE 0
+
+    // Auxiliar function that count the number of nodes of given tree
+    int countNumNodes(NODE *node){
+        if (node == NULL)
+            return 0;
+        return (1 + countNumNodes(node->left) + countNumNodes(node->right));
+    }
+
+    // Auxiliar function for checking the tree balance
+    bool isBalanced(NODE *node){
+        if (node == NULL)
+            return TRUE;
+        
+        if (!isBalanced(node->left) || !isBalanced(node->right)) 
+            return FALSE;
+
+        // Checking for the balance of the tree 
+        int difference = countNumNodes(node->left) - countNumNodes(node->right);
+        
+        // If the tree is unbalenced return FALSE else return TRUE
+        if (abs(difference) > 1)
+            return FALSE;
+        
+        return TRUE;
+    }
+
+    // Function that checks if a binary search tree is perfectly balanced
+    bool isPerfectlyBalanced(BST *tree){
+        if (tree != NULL){
+            if(isEmpty(tree))
+                return TRUE;
+            return isBalanced(tree->root);
+        }
+
+        return TRUE;
+    }

@@ -1,0 +1,45 @@
+Questão 4:
+    Escreva uma função, em C, que decida se um vetor numérico de tamanho n, dado como entrada, é ou não uma heap máxima.
+
+Resposta:
+    #define bool int
+    #define TRUE 1
+    #define FALSE 0
+    
+    int max(const int x, const int y){
+        return x > y ? x : y;
+    }
+
+    // Checks if the root is bigger than his childs
+    bool breaksHeap(int *heapArray, int root){
+        // Setting the left and right child
+        int left = (2 * root) + 1;
+        int right = left + 1;
+
+        int max = max(heap[root], heap[left]);
+
+        int finalMax = max(heap[right], max);
+
+        if (finalMax == heap[root])
+            return TRUE;
+        else
+            return FALSE;
+    }
+
+    // Checks if the heap is in max state
+    bool checksHeap(int *heapArray, int length){
+        int root = (length - 1) / 2;
+
+        // Boolean state to check the heap state
+        bool maxHeap = FALSE;
+
+        while(root >= 0){
+            maxHeap = breaksHeap(array, length, root);
+            if(maxHeap == FALSE){
+                return FALSE;
+            }
+            root--;
+        }
+        
+        return TRUE;
+    }

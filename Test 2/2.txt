@@ -1,0 +1,77 @@
+Questão:
+    Sobre DEQUES, responda às questões abaixo.
+    a) (1.0) Discuta: como implementar uma DEQUE para que as operações de inserção e de remoção tenham custo computacional O(1)?
+    b) (1.5) De acordo com sua resposta no item a), implemente uma função para remover itens de uma DEQUE. 
+    Não esqueça de definir os tipos de dados (as structs) necessários.
+
+Resposta:
+    a) Para se implementar uma deque com operações de inserção e remoção em O(1) precisamos de uma estrutura DEQUE que contenha um nó apontando para o ínicio e um nó apontando para o fim da lista, além de precisarmos de uma estrutura NÓ para fazermos uma lista duplamente ligada. Dessa maneira generalizaremos uma fila e uma pilha em uma mesma estrutura, removendo do início e inserindo no fim temos uma fila e se adicionarmos no fim e removermos do fim temos uma pilha.
+
+    b)
+    // Definições na .h
+    typedef struct _node NODE;
+    typedef struct _dequeue DEQUEUE;
+    #define bool int
+    #define TRUE 1;
+    #define FALSE 0;
+
+    // Definindo as structs no .c da deque
+    struct _NODE {
+        NODE *next;
+        NODE *prev;
+        ITEM *item;
+    }
+
+    struct _dequeue {
+        NODE *head;
+        NODE *tail;
+        int length;
+    }
+
+    // Removing the node and returning it to the user just like in a queue or a stack
+    NODE* removeFromStart(DEQUEUE *dq){
+        // Checking if the dequeue is empty
+        if (dq == NULL || dq->head == NULL)
+            return NULL;
+        
+        NODE *node = dq->head;
+        // Pop the removed node
+        dq->head = dq->head->next;
+
+        // If the new head is null the dequeue is empty
+        if (dq->head == NULL)
+            dq->tail = NULL;
+        // If the dequeue is not setting the prev node of the first elem as NULL, because it's a double linked list
+        else
+            dq->head->prev = NULL;
+
+        // Decreasing the size of the dequeue
+        dq->length--;
+        // Giving the user the popped node
+        return NODE;
+    }
+
+    // Removing the node and returning it to the user just like in a queue or a stack
+    NODE* removeFromBack(DEQUEUE *dq){
+        // Checking if the dequeue is empty
+        if (dq == NULL || dq->head == NULL)
+            return NULL;
+        
+        NODE *node = dq->tail;
+
+        // Is the node the first node of the dequeue
+        if (node == dq->head){
+            dq->head = NULL;
+            dq->tail = NULL;
+        }
+        // If the node isn't the first of the dequeue and changing the tail node
+        else {
+            node->prev->next = NULL;
+            node->tail = node->prev;
+        }
+
+        // Decreasing the size of the dequeue
+        dq->length--;
+        // Giving the user the popped node
+        return NODE;
+    }
